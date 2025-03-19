@@ -116,6 +116,10 @@ export function FileUpload({
     }
   };
 
+  const formatFileTypes = (types: string) => {
+    return types.replace(/\./g, '').replace(/,/g, ', ');
+  };
+
   return (
     <div className="w-full">
       <input
@@ -166,7 +170,7 @@ export function FileUpload({
                 </Button>
               </div>
               <p className="text-xs text-muted-foreground">
-                Supported formats: {acceptedFileTypes.replaceAll('.', '')} (Max: {maxSizeMB}MB)
+                Supported formats: {formatFileTypes(acceptedFileTypes)} (Max: {maxSizeMB}MB)
               </p>
             </div>
           </motion.div>
