@@ -1,0 +1,40 @@
+
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Login - GradeSync{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow">
+            <div class="card-body p-4">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold">Login to GradeSync</h2>
+                    <p class="text-muted">Enter your credentials to access your account</p>
+                </div>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary">Sign In</button>
+                    </div>
+                </form>
+                
+                <div class="mt-4 pt-3 border-top">
+                    <p class="mb-1 text-center"><b>Demo Accounts</b></p>
+                    <div class="row text-center">
+                        <div class="col-md-6">
+                            <p class="small text-muted">Student: student@example.com<br>Password: password</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="small text-muted">Teacher: teacher@example.com<br>Password: password</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

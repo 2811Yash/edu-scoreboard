@@ -1,0 +1,92 @@
+
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Grade Submission - GradeSync{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow mb-4">
+            <div class="card-header bg-white">
+                <h4 class="card-title mb-0">Grade Submission</h4>
+            </div>
+            <div class="card-body">
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <h5>Assignment Details</h5>
+                        <p class="mb-1"><strong>Title:</strong> {{ submission.assignment.title }}</p>
+                        <p class="mb-1"><strong>Subject:</strong> {{ submission.assignment.subject.name }}</p>
+                        <p class="mb-1"><strong>Total Points:</strong> {{ submission.assignment.total_points }}</p>
+                        <p class="mb-1"><strong>Due Date:</strong> {{ submission.assignment.due_date|date:"F d, Y" }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Submission Details</h5>
+                        <p class="mb-1"><strong>Student:</strong> {{ submission.student.username }}</p>
+                        <p class="mb-1"><strong>Email:</strong> {{ submission.student.email }}</p>
+                        <p class="mb-1"><strong>Submitted:</strong> {{ submission.submitted_at|date:"F d, Y H:i" }}</p>
+                        <p class="mb-1">
+                            <strong>Status:</strong> 
+                            {% if submission.status == 'graded' %}
+                            <span class="badge bg-success">Graded</span>
+                            {% else %}
+                            <span class="badge bg-warning text-dark">Pending</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                
+                <hr>
+                
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h5>Student Submission</h5>
+                        <div class="card">
+                            <div class="card-body">
+                                <p><a href="{{ submission.file.url }}" target="_blank" class="btn btn-outline-primary">
+                                    <i class="fas fa-file-alt me-2"></i> View Student Submission
+                                </a></p>
+                                
+                                {% if submission.assignment.answer_key %}
+                                <p><a href="{{ submission.assignment.answer_key.file.url }}" target="_blank" class="btn btn-outline-success">
+                                    <i class="fas fa-check-circle me-2"></i> View Answer Key
+                                </a></p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <hr>
+                
+                <div class="row">
+                    <div class="col-12">
+                        <h5>Grading</h5>
+                        {% if submission.assignment.answer_key %}
+                        <div class="alert alert-info mb-3">
+                            <i class="fas fa-robot me-2"></i> AI Grading available for this assignment.
+                            {% if submission.status == 'pending' %}
+                            The suggested score has been pre-filled below.
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                        
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <div class="d-flex justify-content-between mt-4">
+                                <a href="{% url 'review_submissions' submission.assignment.id %}" class="btn btn-outline-secondary">
+                                    <i class="fas fa-arrow-left me-2"></i> Back to Submissions
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save me-2"></i> Save Grade
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

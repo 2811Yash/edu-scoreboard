@@ -1,0 +1,47 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Teacher Section - GradeSync{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="fw-bold">Teacher Section</h1>
+            <p class="text-muted">Manage your subjects, assignments, and review student submissions</p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center p-5">
+                    <div class="mb-4">
+                        <i class="fas fa-book-open fa-4x text-primary"></i>
+                    </div>
+                    <h3>Manage Subjects</h3>
+                    <p class="text-muted">Add and manage subjects, create assignments, and upload answer keys</p>
+                    <a href="{% url 'subject_list' %}" class="btn btn-primary mt-3">
+                        <i class="fas fa-arrow-right me-2"></i> Go to Subjects
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center p-5">
+                    <div class="mb-4">
+                        <i class="fas fa-brain fa-4x text-success"></i>
+                    </div>
+                    <h3>AI Grading</h3>
+                    <p class="text-muted">Upload answer keys and let our AI automatically grade student submissions</p>
+                    <a href="{% url 'subject_list' %}" class="btn btn-success mt-3">
+                        <i class="fas fa-robot me-2"></i> Check Submissions
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

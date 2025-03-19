@@ -1,69 +1,101 @@
-# Welcome to your Lovable project
 
-## Project info
+# GradeSync - AI-Powered Grading Platform
 
-**URL**: https://lovable.dev/projects/77a2058d-298e-493e-bfde-02fcce33edb9
+GradeSync is a Django-based web application that automates the grading process for teachers and students. Teachers can upload answer keys, and the system uses AI to grade student submissions automatically.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **Role-based Authentication**: Separate interfaces for teachers and students
+- **Teacher Features**:
+  - Create and manage subjects
+  - Create assignments with due dates
+  - Upload answer keys
+  - Review and grade student submissions (manual and AI-assisted)
+- **Student Features**:
+  - View assignments
+  - Submit answers
+  - Track grades and progress
+- **AI Grading**: Automatically grades student submissions by comparing with answer keys
 
-**Use Lovable**
+## Prerequisites
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/77a2058d-298e-493e-bfde-02fcce33edb9) and start prompting.
+- Python 3.8 or higher
+- pip (Python package manager)
 
-Changes made via Lovable will be committed automatically to this repo.
+## Installation
 
-**Use your preferred IDE**
+1. Clone the repository:
+   ```
+   git clone https://github.com/yourusername/gradesync.git
+   cd gradesync
+   ```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+2. Create and activate a virtual environment:
+   ```
+   python -m venv venv
+   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+   ```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+3. Install dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
 
-Follow these steps:
+4. Run migrations:
+   ```
+   python manage.py makemigrations
+   python manage.py migrate
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+5. Create demo data (optional):
+   ```
+   python initialize_db.py
+   ```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+6. Create a superuser (for admin access):
+   ```
+   python manage.py createsuperuser
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+7. Run the development server:
+   ```
+   python manage.py runserver
+   ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+8. Access the application at http://127.0.0.1:8000/
 
-**Edit a file directly in GitHub**
+## Demo Accounts
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+After running the `initialize_db.py` script, you can use these demo accounts:
 
-**Use GitHub Codespaces**
+- **Teacher**:
+  - Email: teacher@example.com
+  - Password: password
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- **Student**:
+  - Email: student@example.com
+  - Password: password
 
-## What technologies are used for this project?
+## Customizing the AI Grading
 
-This project is built with .
+The current implementation uses a placeholder AI grading function. To implement actual AI grading:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+1. Open `core/views.py`
+2. Replace the `ai_grade_submission` function with your ML model implementation
+3. Make sure to properly compare the submission with the answer key
 
-## How can I deploy this project?
+## Project Structure
 
-Simply open [Lovable](https://lovable.dev/projects/77a2058d-298e-493e-bfde-02fcce33edb9) and click on Share -> Publish.
+- `gradesync/` - Project configuration
+- `core/` - Main application
+  - `models.py` - Database models
+  - `views.py` - View functions
+  - `forms.py` - Form definitions
+  - `urls.py` - URL routes
+- `templates/` - HTML templates
+- `static/` - Static files (CSS, JS, images)
+- `media/` - User-uploaded files
 
-## I want to use a custom domain - is that possible?
+## License
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+This project is licensed under the MIT License - see the LICENSE file for details.

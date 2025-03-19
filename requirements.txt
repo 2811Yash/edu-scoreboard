@@ -1,0 +1,9 @@
+
+Django==5.0.1
+django-crispy-forms==2.1
+crispy-bootstrap5==2023.10
+Pillow==10.1.0
+python-dotenv==1.0.0
+# For AI-based grading (you would add specific ML libraries based on your approach)
+scikit-learn==1.3.2
+numpy==1.26.2
