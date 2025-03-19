@@ -57,10 +57,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'gradesync.wsgi.application'
 
 # Database
+# Modified to use PostgreSQL instead of SQLite
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'gradesync',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
