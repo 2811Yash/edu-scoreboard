@@ -6,11 +6,13 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('', views.home, name='home'),
     path('login/', views.login_view, name='login'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
+    path('logout/', views.logout_view, name='logout'),
+    path('register/', views.register_view, name='register'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('upload/<int:assignment_id>/', views.upload_submission, name='upload_submission'),
     
     # Teacher specific URLs
+    path('submission/<int:submission_id>/check_with_llm/', views.check_with_llm, name='check_with_llm'),
     path('teacher/', views.teacher_section, name='teacher_section'),
     path('teacher/subjects/', views.subject_list, name='subject_list'),
     path('teacher/subjects/add/', views.add_subject, name='add_subject'),

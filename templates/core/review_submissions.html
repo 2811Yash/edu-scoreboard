@@ -18,7 +18,7 @@
     </div>
     
     {% if submissions %}
-    <div class="card shadow-sm mb-4">
+    <div class="card shadow-sm mb-4"> 
         <div class="card-header bg-white">
             <h5 class="card-title mb-0">Student Submissions</h5>
         </div>
@@ -53,7 +53,7 @@
                                 {{ submission.score }}/{{ submission.assignment.total_points }}
                                 ({{ submission.score|floatformat:1 }}%)
                                 {% else %}
-                                -
+                                - 
                                 {% endif %}
                             </td>
                             <td>

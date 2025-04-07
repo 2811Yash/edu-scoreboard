@@ -7,7 +7,21 @@ class LoginForm(AuthenticationForm):
     username = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
 
-class SubjectForm(forms.ModelForm):
+from django import forms
+# from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+
+class RegisterForm(UserCreationForm):
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm Password'}))
+
+    class Meta:
+        model = User
+        fields = ['email', 'username', 'password1', 'password2']
+
+class SubjectForm(forms.ModelForm): 
     class Meta:
         model = Subject
         fields = ['name', 'code']
@@ -51,3 +65,6 @@ class GradeSubmissionForm(forms.ModelForm):
             'score': forms.NumberInput(attrs={'class': 'form-control'}),
             'feedback': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
         }
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['feedback'].required = False

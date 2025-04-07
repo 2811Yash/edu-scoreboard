@@ -7,7 +7,7 @@ class User(AbstractUser):
     ROLE_CHOICES = (
         ('student', 'Student'),
         ('teacher', 'Teacher'),
-    )
+    ) 
     
     email = models.EmailField(unique=True)
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='student')
@@ -27,7 +27,7 @@ class Subject(models.Model):
     def __str__(self):
         return f"{self.code} - {self.name}"
 
-class Assignment(models.Model):
+class Assignment(models.Model): 
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='assignments')
@@ -61,7 +61,7 @@ class Submission(models.Model):
     file = models.FileField(upload_to='submissions/')
     submitted_at = models.DateTimeField(auto_now_add=True)
     score = models.FloatField(null=True, blank=True)
-    feedback = models.TextField(blank=True)
+    feedback = models.FileField(upload_to='feedback_pdfs/', null=True, blank=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
     
     class Meta:

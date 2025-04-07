@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-j23k4j5k234j5k2j345kj2345kj234k5j234k5j'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: don't run with debug turned on in production!x
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -61,11 +61,11 @@ WSGI_APPLICATION = 'gradesync.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'gradesync',
+        'NAME': 'scoreboard',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'PASSWORD': '1234',
+        'HOST':'localhost',
+        'PORT': '5432'
     }
 }
 
