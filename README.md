@@ -26,7 +26,7 @@ GradeSync is a Django-based web application that automates the grading process f
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/gradesync.git
+   git clone https://github.com/2811Yash/edu-scoreboard.git
    cd gradesync
    ```
 
