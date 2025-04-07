@@ -70,11 +70,11 @@ After running the `initialize_db.py` script, you can use these demo accounts:
 
 - **Teacher**:
   - Email: teacher@example.com
-  - Password: password
+  - Password: Test@123
 
 - **Student**:
   - Email: student@example.com
-  - Password: password
+  - Password: Test@123
 
 ## Customizing the AI Grading
 
