@@ -9,9 +9,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-j23k4j5k234j5k2j345kj2345kj234k5j234k5j'
 
 # SECURITY WARNING: don't run with debug turned on in production!x
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS =["exam-portal-074n.onrender.com", "localhost", "127.0.0.1"]
 
 # Application definition
 INSTALLED_APPS = [
@@ -58,17 +58,33 @@ WSGI_APPLICATION = 'gradesync.wsgi.application'
 
 # Database
 # Modified to use PostgreSQL instead of SQLite
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'scoreboard',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST':'localhost',
-        'PORT': '5432'
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'scoreboard',
+#         'USER': 'postgres',
+#         'PASSWORD': '1234',
+#         'HOST':'localhost',
+#         'PORT': '5432'
+#     }
+# }
 
+DATABASE_URL = "postgresql://dbuser:zqtuidbzQu5NjuMCHUipTuWG9z6JTtlB@dpg-d05ml2qli9vc738valtg-a.singapore-postgres.render.com/db_skm0"
+
+if DATABASE_URL:
+    url = urlparse(DATABASE_URL)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': url.path[1:],  # Remove leading slash from the DB name
+            'USER': url.username,
+            'PASSWORD': url.password,
+            'HOST': url.hostname,
+            'PORT': url.port or '5432',
+        }
+    }
+else:
+    raise ValueError("DATABASE_URL is not set in environment variables")
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
